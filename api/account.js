@@ -45,7 +45,9 @@ router.post('/', express.oauth.authenticate() , function(req, res, next) {
 });
 
 router.get('/', express.oauth.authenticate() , function(req, res, next) {
-	querybuilder(db.sql ,  req.query , 'insta_account' );
+	querybuilder(db.sql ,  req.query , 'insta_account' ).then(function(rtn) {
+		res.send(rtn);
+	})
 });
 
 	
