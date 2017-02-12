@@ -15,5 +15,22 @@
   "bugs": {
     "url": "https://github.com/jkRaccoon/instagramposter/issues"
   },
-  "homepage": "https://github.com/jkRaccoon/instagramposter#readme"
+  "homepage": "https://github.com/jkRaccoon/instagramposter#readme",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "browser-sync": "^2.18.7",
+    "compression": "^1.6.2",
+    "datatable-parser": "^1.0.0",
+    "express": "^4.14.1",
+    "express-oauth-server": "^2.0.0-b1",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1",
+    "instagram-private-api": "^0.5.12",
+    "mysql2": "^1.1.2",
+    "mysql2-promise": "^0.1.4",
+    "oauth2-server": "^2.4.1",
+    "spdy": "^3.4.4",
+    "sprintf-js": "^1.0.3",
+    "urlencode": "^1.1.0"
+  }
 }
