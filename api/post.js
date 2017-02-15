@@ -16,15 +16,15 @@ router.post('/',  express.oauth.authenticate(),multipart({uploadDir: './upload'}
 	
 	db.sql.query(sql,stmt)
 	.then(function(rtn){
-		console.log(rtn[0] , caption)
-		
+		//console.log(rtn[0] , caption)
+		var plist = []
 		for (var i in rtn[0]){
-			instapost(rtn[0][i].instaid , rtn[0][i].instapass ,  req.files.file.path , caption)
+			plist.push(instapost(rtn[0][i].instaid , rtn[0][i].instapass ,  req.files.file.path , caption));
 		}
-	})
-	
+		return Promise.all(plist);
+	})	
 	.then(function(rtn){
-		res.send({file : req.files.file})
+		res.send({rtn : rtn})
 	}) 
 	.catch(next)
 	
@@ -49,9 +49,11 @@ function instapost(instaid , instapass , path , caption){
 		    .then(function(upload) {
 		        // upload instanceof Client.Upload
 		        // nothing more than just keeping upload id
-		        console.log(upload.params.uploadId);
-		        return Client.Media.configurePhoto(session, upload.params.uploadId, caption);
-		    })
+		        
+		        return [Client.Media.configurePhoto(session, upload.params.uploadId, caption),upload.params.uploadId];
+		    }).spread(function(rtn, uploadId){
+	        	return uploadId;
+	        });
 	})
 }
 
