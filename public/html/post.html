@@ -1,0 +1,13 @@
+Upload on form submit or button click
+<form ng-app="fileUpload"  name="form">
+  Single Image with validations
+  <div class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+    ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
+    ngf-resize="{width: 300, height: 300}">Select</div>
+ 
+  Drop files: <div ngf-drop ng-model="files" class="drop-box">Drop</div>
+  <button type="submit" ng-click="submit()">submit</button>
+</form>
+
+
+Image thumbnail: <img ngf-thumbnail="file || '/thumb.jpg'">

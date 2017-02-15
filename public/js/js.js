@@ -4,7 +4,8 @@ var app = angular.module('monsterraccoon', [
 	'ui.router',
 	'ui.bootstrap',
 	'ui.navbar',
-	'angular-oauth2'
+	'angular-oauth2',
+	'ngFileUpload'
 ]);
 
 

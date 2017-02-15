@@ -2,4 +2,6 @@ node_modules
 bower_components
 .project
 cookies/*
+upload/*
 !cookies/README.md
+!upload/README.md
