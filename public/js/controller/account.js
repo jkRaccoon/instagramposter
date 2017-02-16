@@ -9,7 +9,8 @@ app.controller('account', function($scope , OAuth , $state , $timeout, $http) {
 		    serverSide: true,
 		    "columns": [
 		            { 
-			            "data": "username"
+			            "data": "username",
+			            
 			        },
 		            { 
 			            "data": "instaid"
@@ -18,7 +19,7 @@ app.controller('account', function($scope , OAuth , $state , $timeout, $http) {
 			            "data": "reg_date"
 					},
 		            
-		        ],
+		        ],			
 		    fnServerData:  function(sSource, aoData, fnCallback, oSettings) {
 
 	            //All the parameters you need is in the aoData variable
@@ -28,7 +29,7 @@ app.controller('account', function($scope , OAuth , $state , $timeout, $http) {
 	            var order = aoData[2].value;
 	            var start = aoData[3].value;
 	            var length = aoData[4].value;
-	            var search = aoData[5].value;
+	            var search = aoData[5];
 	            var params={_:1};
 	            
 	           

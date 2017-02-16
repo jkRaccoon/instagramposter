@@ -9,7 +9,7 @@ var app = angular.module('monsterraccoon', [
 ]);
 
 
-app.config(function($locationProvider, $urlRouterProvider , $stateProvider , OAuthProvider , OAuthTokenProvider){
+app.config(function($locationProvider, $urlRouterProvider , $stateProvider ,$httpProvider, OAuthProvider , OAuthTokenProvider){
 	$locationProvider.hashPrefix('!');
 	$urlRouterProvider.otherwise('/');
 //	$urlRouterProvider.when('/accomodation', '/accomodation/beach');
@@ -52,12 +52,24 @@ app.config(function($locationProvider, $urlRouterProvider , $stateProvider , OAu
 			url : "/login",
 			controller : 'login',
 			templateUrl : 'html/login.html'
-		})
+		});
+	$httpProvider.interceptors.push(function($q,$rootScope) {
+		return {			
+			'responseError': function(rejection) {
+				console.log(rejection);
+				if (401 === rejection.status && !rejection.data  && 'Unauthorized' === rejection.statusText) $rootScope.$emit('oauth:error', rejection);
+				
+				
+				return  $q.reject(rejection);
+			}
+		};
+	});
 
 })
 .run(function($rootScope, $state, OAuth) {
+
 	$rootScope.$on('oauth:error', function(event, rejection) {
-	
+		
 		// Ignore `invalid_grant` error - should be catched on `LoginController`.
 		if ('invalid_grant' === rejection.data.error) {
 			return;
@@ -65,7 +77,11 @@ app.config(function($locationProvider, $urlRouterProvider , $stateProvider , OAu
 	
 		// Refresh token when a `invalid_token` error occurs.
 		if ('invalid_token' === rejection.data.error) {
-			return OAuth.getRefreshToken();
+			
+			return OAuth.getRefreshToken().then(function(){
+				
+				return $state.reload();
+			});
 		}
 	
 		// Redirect to `/login` with the `error_reason`.

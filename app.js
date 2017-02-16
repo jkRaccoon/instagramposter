@@ -67,7 +67,7 @@ Client.Session.create(device, storage, 'jk@codecraft.co.kr', 'zktmxpfk0207')
     
 function logErrors (err, req, res, next) {
 	//에러 로깅... 필요하나?
-	console.error(err.stack)
+	//console.error(err.stack)
 	next(err)
 }
 function clientErrorHandler (err, req, res, next) {

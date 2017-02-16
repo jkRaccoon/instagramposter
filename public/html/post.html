@@ -18,7 +18,8 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default" ng-click="submit()">submit</button>
+				<button type="submit" class="btn btn-default" ng-click="submit()" ng-hide="isupload">등록하기</button>
+				<button type="submit" class="btn btn-default"  ng-hide="!isupload">등록중.......</button>
 			</div>
 		</div>
 	</form>
