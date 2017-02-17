@@ -9,24 +9,21 @@ app.controller('account', function($scope , OAuth , $state , $timeout, $http , $
 		    "processing": true,
 		    serverSide: true,
 		    "columns": [
-		            { 
-			            "data": "idx",
-			        },
-			        { 
-			            "data": "username",
-			        },
-			        { 
-			            "data": "instaid"
-			        },
-		            { 
-			            "data": "reg_date"
-					},
-					{ 
-			            "render": function ( data, type, full, meta ) {
-							return "<button class='btn btn-danger' ng-click=\"deleteaccount("+full.idx+")\">삭제</a>";
-					    }
-					},
-		        ],
+	            { 
+		            "data": "idx",
+		        },
+		        { 
+		            "data": "instaid"
+		        },
+	            { 
+		            "data": "reg_date"
+				},
+				{ 
+		            "render": function ( data, type, full, meta ) {
+						return "<button class='btn btn-danger' ng-click=\"deleteaccount("+full.idx+")\">삭제</a>";
+				    }
+				},
+	        ],
 		    "createdRow": function( row, data, dataIndex ) {
 				    $compile(angular.element(row).contents())($scope);
 			},
