@@ -9,11 +9,11 @@ app.controller('account', function($scope , OAuth , $state , $timeout, $http , $
 		    "processing": true,
 		    serverSide: true,
 		    "columns": [
-		            
 		            { 
-
+			            "data": "idx",
+			        },
+			        { 
 			            "data": "username",
-			            
 			        },
 			        { 
 			            "data": "instaid"

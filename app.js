@@ -28,7 +28,7 @@ app.use(logErrors)
 app.use(clientErrorHandler)
 app.use(errorHandler)
 
-app.listen(5000);
+app.listen(5051);
 /*
 // And go for login
 Client.Session.create(device, storage, 'jk@codecraft.co.kr', 'zktmxpfk0207')
