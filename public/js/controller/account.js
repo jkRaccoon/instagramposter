@@ -1,24 +1,34 @@
 
-app.controller('account', function($scope , OAuth , $state , $timeout, $http) {
+app.controller('account', function($scope , OAuth , $state , $timeout, $http , $compile) {
 	$timeout(function() { 
 		$('#datatables').DataTable({
 			dom: 'Bfrtip',
 		    buttons: [
 		        'colvis','copy', 'csv' , 'excel' , 'pdf' 
 		    ],
+		    "processing": true,
 		    serverSide: true,
 		    "columns": [
+		            
 		            { 
-			            "data": "username"
+			            "data": "idx"
 			        },
-		            { 
+			        { 
 			            "data": "instaid"
 			        },
 		            { 
 			            "data": "reg_date"
 					},
+					{ 
+			            "render": function ( data, type, full, meta ) {
+							return "<button class='btn btn-danger' ng-click=\"deleteaccount("+full.idx+")\">삭제</a>";
+					    }
+					},
 		            
 		        ],
+		    "createdRow": function( row, data, dataIndex ) {
+				    $compile(angular.element(row).contents())($scope);
+			},
 		    fnServerData:  function(sSource, aoData, fnCallback, oSettings) {
 
 	            //All the parameters you need is in the aoData variable
@@ -29,13 +39,13 @@ app.controller('account', function($scope , OAuth , $state , $timeout, $http) {
 	            var start = aoData[3].value;
 	            var length = aoData[4].value;
 	            var search = aoData[5].value;
-	            var params={_:1};
+	            var params={_:new Date().getTime().toString() + new Date().getMilliseconds().toString()};
 	            
 	           
 	            for (var i in aoData){
 	            	params[aoData[i].name] = aoData[i].value
 	            }
-	            params["_"] = new Date().getTime().toString() + new Date().getMilliseconds().toString();
+
 	           
 	           
 	            

@@ -1,4 +1,5 @@
 
-app.controller('mainpage', function($scope, OAuth) {
-	console.log(OAuth.isAuthenticated())
+app.controller('mainpage', function($scope, OAuth , $state) {
+
+	if(!OAuth.isAuthenticated()) $state.go('login');
 });
