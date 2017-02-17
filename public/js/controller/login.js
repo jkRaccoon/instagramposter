@@ -8,6 +8,8 @@ app.controller('login', function($scope , OAuth , $state) {
 		
 		OAuth.getAccessToken(user).then(function(rtn){
 			$state.go('main');
+		}).catch(function(){
+			alert('잘못된계정입니다');
 		});
 	}
 });
