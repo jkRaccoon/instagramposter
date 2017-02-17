@@ -11,7 +11,9 @@ app.controller('account', function($scope , OAuth , $state , $timeout, $http , $
 		    "columns": [
 		            
 		            { 
-			            "data": "idx"
+
+			            "data": "username",
+			            
 			        },
 			        { 
 			            "data": "instaid"
@@ -24,7 +26,6 @@ app.controller('account', function($scope , OAuth , $state , $timeout, $http , $
 							return "<button class='btn btn-danger' ng-click=\"deleteaccount("+full.idx+")\">삭제</a>";
 					    }
 					},
-		            
 		        ],
 		    "createdRow": function( row, data, dataIndex ) {
 				    $compile(angular.element(row).contents())($scope);
@@ -38,8 +39,8 @@ app.controller('account', function($scope , OAuth , $state , $timeout, $http , $
 	            var order = aoData[2].value;
 	            var start = aoData[3].value;
 	            var length = aoData[4].value;
-	            var search = aoData[5].value;
-	            var params={_:new Date().getTime().toString() + new Date().getMilliseconds().toString()};
+				var search = aoData[5];
+	            var params={_:1};
 	            
 	           
 	            for (var i in aoData){

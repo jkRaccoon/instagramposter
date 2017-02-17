@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 
 var oauth2 = require('./api/oauth2.js');
 var account = require('./api/account.js');
+var post = require('./api/post.js');
 
 var app = express();
 var router = express.Router();
@@ -20,6 +21,7 @@ app.use("/bower_components",express.static('bower_components'));
 app.use("/" ,express.static('public'));
 app.use("/api/oauth2" , oauth2);
 app.use("/api/account" , account);
+app.use("/api/post" , post);
 
 
 app.use(logErrors)
@@ -65,7 +67,7 @@ Client.Session.create(device, storage, 'jk@codecraft.co.kr', 'zktmxpfk0207')
     
 function logErrors (err, req, res, next) {
 	//에러 로깅... 필요하나?
-	console.error(err.stack)
+	//console.error(err.stack)
 	next(err)
 }
 function clientErrorHandler (err, req, res, next) {
