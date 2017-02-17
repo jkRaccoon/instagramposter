@@ -56,7 +56,7 @@ app.config(function($locationProvider, $urlRouterProvider , $stateProvider ,$htt
 	$httpProvider.interceptors.push(function($q,$rootScope) {
 		return {			
 			'responseError': function(rejection) {
-				console.log(rejection);
+				//console.log(rejection);
 				if (401 === rejection.status && !rejection.data  && 'Unauthorized' === rejection.statusText) $rootScope.$emit('oauth:error', rejection);
 				
 				
